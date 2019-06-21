@@ -58,6 +58,15 @@ class App extends Component {
       playing: false
     });
 
+    game.newWords();
+
+  }
+
+  async newWords() {
+
+    const palavras = await PegarPalavras.list();
+    this.setState({palavras});
+
   }
 
   render() {
@@ -94,12 +103,11 @@ class App extends Component {
     );
   }
 
-  async componentDidMount() {
+  componentDidMount() {
 
     LoadSounds();
 
-    const palavras = await PegarPalavras.list();
-    this.setState({palavras});
+    this.newWords();
 
   }
 
